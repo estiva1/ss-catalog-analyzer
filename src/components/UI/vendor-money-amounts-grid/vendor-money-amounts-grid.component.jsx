@@ -10,7 +10,7 @@ const FramerCounter = ({ startVal = 0, endVal = 0, duration = 1 }) => {
   const to = useTransform(from, (value) =>
     endVal % 1 !== 0
       ? value.toLocaleString("en-US", {
-          minimumFractionDigits: 2,
+          minimumFractionDigits: 1,
           maximumFractionDigits: 2,
         })
       : value.toLocaleString("en-US", {
@@ -43,8 +43,10 @@ const Item = ({ heading, itemData }) => {
           <ValueBox key={index}>
             <Stack direction="row" gap="4px" alignItems="center">
               <Label>{item.label}</Label>
-              <Box component="span" position="relative">
+              <Box component="span" position="relative" overflow="hidden">
                 <FramerCounter endVal={item.value} duration={3} />
+                {/*Same hidden value to prevent ValueBox from
+                 instant resizing itself during countup*/}
                 <Value style={{ visibility: "hidden" }}>
                   $
                   {Math.abs(item.value)
