@@ -4,8 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
+import Dropdown from "../../../UI/dropdown/dropdown.component";
+import CrmListView from "../../../crm-list-view/crm-list-view.component";
+import CustomizedSearchField from "../../../UI/searchfield/searchfield.component";
 import VendorFoldersView from "../../../vendor-folders-view/vendor-folders-view.component";
 import { CrmListTabIcon, TaskTabIcon, VendorFoldersTabIcon } from "./catalog-analyzer-nav-tabs.styles";
 
@@ -45,6 +49,20 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }
   },
 }));
 
+const MotionWrapper = ({ key, children }) => {
+  return (
+    <motion.div
+      key={key}
+      initial={{ x: 200, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -200, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 const CustomTabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
@@ -68,68 +86,90 @@ const TabProps = (index) => {
   };
 };
 
-const MotionWrapper = ({ key, children }) => {
-  return (
-    <motion.div
-      key={key}
-      initial={{ y: -200, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 200, opacity: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
 const CatalogAnalyzerNavTabs = () => {
-  const [value, setValue] = useState(0);
+  const [tab, setTab] = useState(0);
+  const [itemFilter, setItemFilter] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState(null);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const dropdownTestOptions = [
+    "prospect",
+    "open",
+    "rejected",
+    "closed",
+    "prepaid",
+    "credit card",
+    "ach",
+    "net 30 terms",
+  ];
+
+  const handleItemFilterChange = (event) => setItemFilter(event.target.value);
+  const handleChange = (event, newTab) => {
+    setTab(newTab);
   };
 
   return (
     <Box>
-      <Box sx={{ marginBottom: "8px" }}>
-        <StyledTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="catalog analyzer tabs"
-          //variant="fullWidth"
-          sx={{ justifyContent: "end" }}
-        >
-          <StyledTab
-            icon={<VendorFoldersTabIcon />}
-            iconPosition="start"
-            label="Vendor Folders view"
-            {...TabProps(0)}
-          />
-          <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM List view" {...TabProps(0)} />
-          <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Task view" {...TabProps(0)} />
-        </StyledTabs>
-      </Box>
-      
-      {/*Using AnimatePresence causing jump effect of tab outline*/}
-      {/*TODO: Fix jump effect*/}
+      <Box sx={{ marginBottom: "12px" }}>
+        <Stack direction="row" gap="10px" alignItems="center" justifyContent="end">
+          <AnimatePresence mode="wait">
+            {(tab === 1 || tab === 2) && (
+              <MotionWrapper>
+                <Stack direction="row" spacing="10px" alignItems="center">
+                  <div style={{ width: "320px" }}>
+                    <CustomizedSearchField
+                      fullWidth
+                      placeholder="Search by Name"
+                      value={itemFilter}
+                      onChange={handleItemFilterChange}
+                    />
+                  </div>
+                  <div style={{ width: "250px" }}>
+                    <Dropdown
+                      placeholder="Filter by Vendor"
+                      data={dropdownTestOptions}
+                      setSelectedValue={setSelectedStatus}
+                    />
+                  </div>
+                </Stack>
+              </MotionWrapper>
+            )}
+          </AnimatePresence>
 
-      {/* <AnimatePresence mode="wait"> */}
-        {value === 0 && (
-          <CustomTabPanel key={0} index={0} value={value}>
+          <StyledTabs
+            value={tab}
+            onChange={handleChange}
+            aria-label="catalog analyzer tabs"
+            //variant="fullWidth"
+          >
+            <StyledTab
+              icon={<VendorFoldersTabIcon />}
+              iconPosition="start"
+              label="Vendor Folders view"
+              {...TabProps(0)}
+            />
+            <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM List view" {...TabProps(0)} />
+            <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Task view" {...TabProps(0)} />
+          </StyledTabs>
+        </Stack>
+      </Box>
+
+      <AnimatePresence mode="wait">
+        {tab === 0 && (
+          <CustomTabPanel key={0} index={0} value={tab}>
             <VendorFoldersView />
           </CustomTabPanel>
         )}
-        {value === 1 && (
-          <CustomTabPanel key={1} index={1} value={value}>
-            Item Two
+        {tab === 1 && (
+          <CustomTabPanel key={1} index={1} value={tab}>
+            <CrmListView itemFilter={itemFilter} selectedStatus={selectedStatus} />
           </CustomTabPanel>
         )}
-        {value === 2 && (
-          <CustomTabPanel key={2} index={2} value={value}>
+        {tab === 2 && (
+          <CustomTabPanel key={2} index={2} value={tab}>
             Item Three
           </CustomTabPanel>
         )}
-      {/* </AnimatePresence> */}
+      </AnimatePresence>
     </Box>
   );
 };

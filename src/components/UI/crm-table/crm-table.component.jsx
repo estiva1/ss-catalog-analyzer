@@ -3,24 +3,18 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
+import { TableHead, TableRow } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
-import { Stack, TableHead, TableRow, Tooltip } from "@mui/material";
-import CustomizedProgressBar from "../progress-bar/progress-bar.component";
 
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import testProductImage from "../../../assets/product-image-for-table-example.png";
+import Thumbnail from "../thumbnail/thumbnail.component";
 
 import {
-  ItemImage,
-  LabelText,
-  PrimaryText,
-  PrimaryTextHighlighted,
-  SecondaryText,
-  SmallText,
+  CellTextSecondary,
+  CellTextSecondaryGray,
   StyledTableCell,
   StyledTableContainer,
   StyledTableRow,
-} from "./recent-activity-table.styles";
+} from "./crm-table.styles";
 
 const generateHighlightedText = (text, filterValue) => {
   const lowerText = text.toLowerCase();
@@ -43,26 +37,50 @@ const generateHighlightedText = (text, filterValue) => {
 };
 
 const CrmTable = ({ data, itemFilter, selectedStatus }) => {
-  const crmItems = data.map(({ id, itemName, sellersSku, sku, changeDate, status, price, changeReason }) => {
-    const { date, time } = changeDate || {};
-    const { currentPrice, newPrice } = price || {};
-
-    return {
+  const crmItems = data.map(
+    ({
       id,
-      itemName,
-      sellersSku,
-      sku,
-      date,
-      time,
-      status,
-      currentPrice,
-      newPrice,
-      changeReason,
-    };
-  });
+      vendorName,
+      userCategory,
+      vendorStatus,
+      amazonCategory,
+      paymentStatus,
+      leadTimeMin,
+      leadTimeMax,
+      phoneNumber,
+      email,
+      totalPos,
+      accountStatus,
+      vendorNote,
+      adress,
+    }) => {
+      const { vendor, basedIn } = adress || {};
+
+      return {
+        id,
+        vendorName,
+        userCategory,
+        vendorStatus,
+        amazonCategory,
+        paymentStatus,
+        leadTimeMin,
+        leadTimeMax,
+        phoneNumber,
+        email,
+        totalPos,
+        accountStatus,
+        vendorNote,
+        vendor,
+        basedIn,
+      };
+    }
+  );
 
   const filteredData = selectedStatus
-    ? crmItems.filter((item) => item.status.toLowerCase() === selectedStatus)
+    ? crmItems.filter(
+        (item) =>
+          item.vendorStatus.toLowerCase() === selectedStatus || item.paymentStatus.toLowerCase() === selectedStatus
+      )
     : crmItems;
 
   const [page, setPage] = useState(0);
@@ -77,9 +95,8 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
   };
 
   const matchingData = filteredData.filter((item) => {
-    const itemNameMatch = item.itemName.toLowerCase().includes(itemFilter);
-    const skuMatch = item.sku.toLowerCase().includes(itemFilter);
-    return itemNameMatch || skuMatch;
+    const vendorNameMatch = item.vendorName.toLowerCase().includes(itemFilter);
+    return vendorNameMatch;
   });
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -88,106 +105,83 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <StyledTableContainer>
-        <Table sx={{ minWidth: 800 }} aria-labelledby="crm table">
+        <Table sx={{ minWidth: 1200 }} aria-labelledby="crm table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">Changed At</StyledTableCell>
-              <StyledTableCell align="left">Product</StyledTableCell>
-              <StyledTableCell align="left">SKU</StyledTableCell>
-              <StyledTableCell align="left">Status</StyledTableCell>
-              <StyledTableCell align="left">Price</StyledTableCell>
-              <StyledTableCell align="left">Change Reason</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">User Category</StyledTableCell>
+              <StyledTableCell align="center">Vendor Status</StyledTableCell>
+              <StyledTableCell align="center">Amazon Category</StyledTableCell>
+              <StyledTableCell align="center">Payment Status</StyledTableCell>
+              <StyledTableCell align="center">Lead Time Min</StyledTableCell>
+              <StyledTableCell align="center">Lead Time Max</StyledTableCell>
+              <StyledTableCell align="center">Phone #</StyledTableCell>
+              <StyledTableCell align="center">Email</StyledTableCell>
+              <StyledTableCell align="center">Total PO's</StyledTableCell>
+              <StyledTableCell align="center">Account Status</StyledTableCell>
+              <StyledTableCell align="center">Vendor Note</StyledTableCell>
+              <StyledTableCell align="center">Address</StyledTableCell>
+              <StyledTableCell align="center">Actions</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {matchingData
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(({ id, itemName, sellersSku, sku, date, time, status, currentPrice, newPrice, changeReason }) => (
-                <StyledTableRow key={`item-${id}`}>
-                  <StyledTableCell align="left">
-                    <Stack direction="column" spacing="6px">
-                      <PrimaryText>{date}</PrimaryText>
-                      <SecondaryText>{time}</SecondaryText>
-                    </Stack>
-                  </StyledTableCell>
-                  <StyledTableCell width="300px">
-                    <Stack direction="row" spacing="8px">
-                      <ItemImage src={testProductImage} style={{ width: "34px", height: "34px" }} loading="lazy" />
-                      <Stack direction="column" gap="8px">
-                        <Tooltip title={itemName} placement="top">
-                          <PrimaryTextHighlighted clamp>
-                            {generateHighlightedText(itemName, itemFilter)}
-                          </PrimaryTextHighlighted>
-                        </Tooltip>
-
-                        <Stack direction="row">
-                          <SmallText style={{ color: "#979797", whiteSpace: "nowrap" }}>Seller's SKU:&nbsp;</SmallText>
-                          <Tooltip title={sellersSku} placement="top">
-                            <SmallText clamp style={{ color: "#4E5969" }}>
-                              {sellersSku}
-                            </SmallText>
-                          </Tooltip>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <PrimaryText>{generateHighlightedText(sku, itemFilter)}</PrimaryText>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <Stack direction="column" gap="6px">
-                      <CustomizedProgressBar status={status.toLowerCase()} />
-                      <SecondaryText style={{ color: "#979797", textTransform: "capitalize", alignSelf: "center" }}>
-                        {status}
-                      </SecondaryText>
-                    </Stack>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <Stack direction="column" gap="4px">
-                      <Stack direction="row" spacing="10px" alignItems="center">
-                        <PrimaryText>${currentPrice}</PrimaryText>
-                        <LabelText>current price</LabelText>
-                      </Stack>
-
-                      <Stack direction="row" alignItems="center">
-                        <SmallText difference={Number(newPrice) - Number(currentPrice)}>
-                          {(Number(newPrice) - Number(currentPrice)).toFixed(2)}
-                        </SmallText>
-                        {Number(newPrice) - Number(currentPrice) > 0 ? (
-                          <ArrowDropUpIcon fontSize="1rem" color="success" />
-                        ) : Number(newPrice) - Number(currentPrice) < 0 ? (
-                          <ArrowDropUpIcon
-                            fontSize="1rem"
-                            color="error"
-                            sx={{
-                              transform: "rotate(180deg)",
-                            }}
-                          />
-                        ) : (
-                          <ArrowDropUpIcon
-                            fontSize="1rem"
-                            sx={{
-                              transform: "rotate(90deg)",
-                            }}
-                          />
-                        )}
-                      </Stack>
-
-                      <Stack direction="row" spacing="10px" alignItems="center">
-                        <PrimaryText style={{ color: "#000", fontWeight: 600 }}>${newPrice}</PrimaryText>
-                        <LabelText>new price</LabelText>
-                      </Stack>
-                    </Stack>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <PrimaryText>{changeReason}</PrimaryText>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+              .map(
+                ({
+                  id,
+                  vendorName,
+                  userCategory,
+                  vendorStatus,
+                  amazonCategory,
+                  paymentStatus,
+                  leadTimeMin,
+                  leadTimeMax,
+                  phoneNumber,
+                  email,
+                  totalPos,
+                  accountStatus,
+                  vendorNote,
+                  vendor,
+                  basedIn,
+                }) => (
+                  <StyledTableRow key={`item-${id}`}>
+                    <StyledTableCell align="center">
+                      <CellTextSecondary>{generateHighlightedText(vendorName, itemFilter)}</CellTextSecondary>{" "}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{userCategory}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Box display="inline-table">
+                        <Thumbnail status={vendorStatus} />
+                      </Box>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{amazonCategory}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Box display="inline-table">
+                        <Thumbnail status={paymentStatus} />
+                      </Box>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{leadTimeMin}</StyledTableCell>
+                    <StyledTableCell align="center">{leadTimeMax}</StyledTableCell>
+                    <StyledTableCell align="center">{phoneNumber}</StyledTableCell>
+                    <StyledTableCell align="center">{email}</StyledTableCell>
+                    <StyledTableCell align="center">{totalPos}</StyledTableCell>
+                    <StyledTableCell align="center">{accountStatus}</StyledTableCell>
+                    <StyledTableCell align="center">{vendorNote}</StyledTableCell>
+                    <StyledTableCell align="left">
+                      <Box component="span">
+                        {vendor}
+                        <CellTextSecondaryGray>{basedIn}</CellTextSecondaryGray>
+                      </Box>
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{leadTimeMin}</StyledTableCell>
+                  </StyledTableRow>
+                )
+              )}
             {emptyRows > 0 && (
               <StyledTableRow
                 sx={{
-                  height: 83 * emptyRows, //the most heightish cell - with prices (5.1875rem)
+                  height: 56 * emptyRows,
                   ":hover": {
                     backgroundColor: "#FFF",
                   },
