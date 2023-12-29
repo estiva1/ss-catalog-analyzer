@@ -48,7 +48,6 @@ export const VendorLogo = styled.img`
 
 export const VendorFallback = styled.div`
   position: relative;
-  box-sizing: content-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;

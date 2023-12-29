@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { styled as mStyled } from "@mui/material/styles";
-import { TableCell, TableContainer, TableRow, tableCellClasses } from "@mui/material";
+import { Button, TableCell, TableContainer, TableRow, tableCellClasses } from "@mui/material";
 
 export const StyledTableContainer = mStyled(TableContainer)(() => ({
   border: "1px solid #E6E6E6",
@@ -34,13 +34,15 @@ export const StyledTableCell = mStyled(TableCell)(() => ({
     fontStyle: "normal",
     fontWeight: 600,
     lineHeight: "100%",
-    minHeight: "20px",
+    height: "32px",
     padding: "6px",
   },
   [`&.${tableCellClasses.body}`]: {
     fontFamily: "Titillium Web",
     fontSize: "0.875rem",
-    padding: "7px 5px",
+    letterSpacing: "0.00438rem",
+    lineHeight: "100%",
+    padding: "6px",
     height: "56px",
     ":not(:last-child)": {
       borderRight: "1px solid #E6E6E6",
@@ -56,6 +58,18 @@ export const StyledTableRow = mStyled(TableRow)(() => ({
     borderBottom: 0,
   },
 }));
+
+export const StyledButton = styled(Button)`
+  &.MuiButton-outlined {
+    min-width: 36px;
+    font-family: Titillium Web;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: none;
+    white-space: nowrap;
+  }
+`;
 
 export const CellTextSecondary = styled.span`
   display: inline-table;

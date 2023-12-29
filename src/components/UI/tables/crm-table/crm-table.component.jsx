@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import { TableHead, TableRow } from "@mui/material";
+import { Stack, TableHead, TableRow } from "@mui/material";
 import TablePagination from "@mui/material/TablePagination";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-import Thumbnail from "../thumbnail/thumbnail.component";
+import Thumbnail from "../../thumbnail/thumbnail.component";
 
 import {
   CellTextSecondary,
   CellTextSecondaryGray,
+  StyledButton,
   StyledTableCell,
   StyledTableContainer,
   StyledTableRow,
@@ -105,7 +107,7 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <StyledTableContainer>
-        <Table sx={{ minWidth: 1200 }} aria-labelledby="crm table">
+        <Table sx={{ minWidth: 1300 }} aria-labelledby="crm table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Name</StyledTableCell>
@@ -163,7 +165,9 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
                     </StyledTableCell>
                     <StyledTableCell align="center">{leadTimeMin}</StyledTableCell>
                     <StyledTableCell align="center">{leadTimeMax}</StyledTableCell>
-                    <StyledTableCell align="center">{phoneNumber}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <span style={{ whiteSpace: "nowrap" }}>{phoneNumber}</span>
+                    </StyledTableCell>
                     <StyledTableCell align="center">{email}</StyledTableCell>
                     <StyledTableCell align="center">{totalPos}</StyledTableCell>
                     <StyledTableCell align="center">{accountStatus}</StyledTableCell>
@@ -171,10 +175,19 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
                     <StyledTableCell align="left">
                       <Box component="span">
                         {vendor}
-                        <CellTextSecondaryGray>{basedIn}</CellTextSecondaryGray>
+                        <CellTextSecondaryGray style={{ marginTop: "4px" }}>{basedIn}</CellTextSecondaryGray>
                       </Box>
                     </StyledTableCell>
-                    <StyledTableCell align="center">{leadTimeMin}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Stack direction="row" gap="16px" alignItems="center">
+                        <StyledButton variant="outlined">Edit Vendor</StyledButton>
+                        <StyledButton variant="outlined" color="error" sx={{ height: "37px", paddingInline: 0 }}>
+                          <span style={{ display: "flex", alignItems: "center" }}>
+                            <HighlightOffIcon sx={{ fontSize: "18px" }} />
+                          </span>
+                        </StyledButton>
+                      </Stack>
+                    </StyledTableCell>
                   </StyledTableRow>
                 )
               )}

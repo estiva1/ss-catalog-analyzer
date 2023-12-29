@@ -12,6 +12,8 @@ import CrmListView from "../../../crm-list-view/crm-list-view.component";
 import CustomizedSearchField from "../../../UI/searchfield/searchfield.component";
 import VendorFoldersView from "../../../vendor-folders-view/vendor-folders-view.component";
 import { CrmListTabIcon, TaskTabIcon, VendorFoldersTabIcon } from "./catalog-analyzer-nav-tabs.styles";
+import { tasksTableData } from "../../../../constants/tasksTableData";
+import TaskTable from "../../tables/tasks-table/tasks-table.component";
 
 const StyledTabs = styled((props) => (
   <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
@@ -166,7 +168,7 @@ const CatalogAnalyzerNavTabs = () => {
         )}
         {tab === 2 && (
           <CustomTabPanel key={2} index={2} value={tab}>
-            Item Three
+            <TaskTable data={tasksTableData} itemFilter={itemFilter.toLowerCase()} selectedStatus={selectedStatus} />
           </CustomTabPanel>
         )}
       </AnimatePresence>
