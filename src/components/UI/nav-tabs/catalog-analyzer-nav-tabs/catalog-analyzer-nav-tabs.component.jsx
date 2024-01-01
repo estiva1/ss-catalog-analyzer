@@ -119,6 +119,7 @@ const CatalogAnalyzerNavTabs = () => {
                 <Stack direction="row" spacing="10px" alignItems="center">
                   <div style={{ width: "320px" }}>
                     <CustomizedSearchField
+                      id="searchfield-for-tables"
                       fullWidth
                       placeholder="Search by Name"
                       value={itemFilter}

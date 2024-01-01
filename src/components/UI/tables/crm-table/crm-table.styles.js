@@ -7,20 +7,22 @@ export const StyledTableContainer = mStyled(TableContainer)(() => ({
   borderRadius: "8px",
   boxShadow: "none",
   maxHeight: "450px",
+
   "&::-webkit-scrollbar": {
-    width: " 0.4em",
+    height: "0.45rem",
   },
   "&::-webkit-scrollbar-track": {
     backgroundColor: "transparent",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundCcolor: "transparent",
-    " &:hover": {
-      backgroundColor: "hsl(0, 0%, 81.2%)",
+    backgroundColor: "#D1DBE3",
+    borderRadius: "0.15rem",
+    "&:hover": {
+      backgroundColor: "#C7D4DF",
     },
   },
   "&:hover::-webkit-scrollbar-thumb": {
-    backgroundColor: "hsl(0, 0%, 81.2%)",
+    backgroundColor: "#C7D4DF",
   },
 }));
 
