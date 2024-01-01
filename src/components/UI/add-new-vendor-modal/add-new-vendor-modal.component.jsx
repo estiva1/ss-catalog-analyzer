@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+
+import { Box, Divider, Stack } from "@mui/material";
+
 import CustomModal from "../modal/custom-modal.component";
 import CustomAccordion from "../accordion/accordion.component";
-import { Box, Divider, Stack } from "@mui/material";
 import StyledTextField from "../styled-text-field/styled-text-field.component";
+
 import {
   AddNewVendorModalContainer,
   FieldForm,
@@ -26,6 +29,20 @@ const AddNewVendor = ({ open, onClose }) => {
     Note: "",
   });
 
+  // State to track the validation status of each field
+  const [fieldValidation, setFieldValidation] = useState({
+    "Vendor Name": true,
+    "User Category": true,
+    "Amazon Category": true,
+    "Account Status": true,
+    "Account #": true,
+    "Lead Time (MIN)": true,
+    "Lead Time (MAX)": true,
+    "Phone #": true,
+    Email: true,
+    //Note: true,
+  });
+
   const handleExpand = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -34,6 +51,12 @@ const AddNewVendor = ({ open, onClose }) => {
     setFormValues({
       ...formValues,
       [fieldName]: event.target.value,
+    });
+
+    // Reset validation status when the user starts typing
+    setFieldValidation({
+      ...fieldValidation,
+      [fieldName]: true,
     });
   };
 
@@ -49,9 +72,25 @@ const AddNewVendor = ({ open, onClose }) => {
       "Phone #",
       "Email",
     ];
-    const isFormValid = requiredFields.every((field) => formValues[field] !== "");
 
-    if (isFormValid) {
+    let isValid = true;
+
+    const updatedFieldValidation = {};
+
+    requiredFields.forEach((field) => {
+      updatedFieldValidation[field] = formValues[field] !== "";
+
+      // You can also highlight the fields that are empty after the Submit button is clicked
+      if (!updatedFieldValidation[field]) {
+        isValid = false;
+      }
+    });
+
+    // Update the state once after the loop
+    setFieldValidation(updatedFieldValidation);
+
+    if (isValid) {
+      // Submit the form or perform further actions
       console.log("Form is valid");
     } else {
       console.log("Please fill in all required fields");
@@ -80,6 +119,7 @@ const AddNewVendor = ({ open, onClose }) => {
                   label="Vendor Name"
                   placeholder="Vendor Name"
                   value={formValues["Vendor Name"]}
+                  error={!fieldValidation["Vendor Name"]}
                   onChange={handleTextFieldChange("Vendor Name")}
                 />
 
@@ -91,6 +131,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="User Category"
                     placeholder="User Category"
                     value={formValues["User Category"]}
+                    error={!fieldValidation["User Category"]}
                     onChange={handleTextFieldChange("User Category")}
                   />
                   <StyledTextField
@@ -100,6 +141,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Amazon Category"
                     placeholder="Amazon Category"
                     value={formValues["Amazon Category"]}
+                    error={!fieldValidation["Amazon Category"]}
                     onChange={handleTextFieldChange("Amazon Category")}
                   />
                 </Box>
@@ -112,6 +154,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Account #"
                     placeholder="Account #"
                     value={formValues["Account #"]}
+                    error={!fieldValidation["Account #"]}
                     onChange={handleTextFieldChange("Account #")}
                   />
                   <StyledTextField
@@ -121,6 +164,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Account Status"
                     placeholder="Account Status"
                     value={formValues["Account Status"]}
+                    error={!fieldValidation["Account Status"]}
                     onChange={handleTextFieldChange("Account Status")}
                   />
                 </Box>
@@ -133,6 +177,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Lead Time (MIN)"
                     placeholder="Lead Time (MIN)"
                     value={formValues["Lead Time (MIN)"]}
+                    error={!fieldValidation["Lead Time (MIN)"]}
                     onChange={handleTextFieldChange("Lead Time (MIN)")}
                   />
                   <StyledTextField
@@ -142,6 +187,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Lead Time (MAX)"
                     placeholder="Lead Time (MAX)"
                     value={formValues["Lead Time (MAX)"]}
+                    error={!fieldValidation["Lead Time (MAX)"]}
                     onChange={handleTextFieldChange("Lead Time (MAX)")}
                   />
                 </Box>
@@ -154,6 +200,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     label="Phone #"
                     placeholder="Phone #"
                     value={formValues["Phone #"]}
+                    error={!fieldValidation["Phone #"]}
                     onChange={handleTextFieldChange("Phone #")}
                   />
                   <StyledTextField
@@ -165,6 +212,7 @@ const AddNewVendor = ({ open, onClose }) => {
                     autoComplete="off"
                     placeholder="Email"
                     value={formValues["Email"]}
+                    error={!fieldValidation["Email"]}
                     onChange={handleTextFieldChange("Email")}
                   />
                 </Box>
