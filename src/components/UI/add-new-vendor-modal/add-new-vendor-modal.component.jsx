@@ -8,9 +8,11 @@ import StyledTextField from "../styled-text-field/styled-text-field.component";
 
 import {
   AddNewVendorModalContainer,
+  Column,
   FieldForm,
   Heading,
   ListContainer,
+  Row,
   StickDivider,
 } from "./add-new-vendor-modal.styles";
 
@@ -111,7 +113,7 @@ const AddNewVendor = ({ open, onClose }) => {
               expanded={expanded === "panel1"}
               onChange={handleExpand("panel1")}
             >
-              <Stack spacing="16px">
+              <Box>
                 <StyledTextField
                   required
                   fullWidth
@@ -122,100 +124,101 @@ const AddNewVendor = ({ open, onClose }) => {
                   error={!fieldValidation["Vendor Name"]}
                   onChange={handleTextFieldChange("Vendor Name")}
                 />
+                <Row>
+                  <Column>
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="User Category"
+                      label="User Category"
+                      placeholder="User Category"
+                      value={formValues["User Category"]}
+                      error={!fieldValidation["User Category"]}
+                      onChange={handleTextFieldChange("User Category")}
+                    />
 
-                <Box display="flex" gap="16px">
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="User Category"
-                    label="User Category"
-                    placeholder="User Category"
-                    value={formValues["User Category"]}
-                    error={!fieldValidation["User Category"]}
-                    onChange={handleTextFieldChange("User Category")}
-                  />
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Amazon Category"
-                    label="Amazon Category"
-                    placeholder="Amazon Category"
-                    value={formValues["Amazon Category"]}
-                    error={!fieldValidation["Amazon Category"]}
-                    onChange={handleTextFieldChange("Amazon Category")}
-                  />
-                </Box>
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Account #"
+                      label="Account #"
+                      placeholder="Account #"
+                      value={formValues["Account #"]}
+                      error={!fieldValidation["Account #"]}
+                      onChange={handleTextFieldChange("Account #")}
+                    />
 
-                <Box display="flex" gap="16px">
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Account #"
-                    label="Account #"
-                    placeholder="Account #"
-                    value={formValues["Account #"]}
-                    error={!fieldValidation["Account #"]}
-                    onChange={handleTextFieldChange("Account #")}
-                  />
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Account Status"
-                    label="Account Status"
-                    placeholder="Account Status"
-                    value={formValues["Account Status"]}
-                    error={!fieldValidation["Account Status"]}
-                    onChange={handleTextFieldChange("Account Status")}
-                  />
-                </Box>
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Lead Time (MIN)"
+                      label="Lead Time (MIN)"
+                      placeholder="Lead Time (MIN)"
+                      value={formValues["Lead Time (MIN)"]}
+                      error={!fieldValidation["Lead Time (MIN)"]}
+                      onChange={handleTextFieldChange("Lead Time (MIN)")}
+                    />
 
-                <Box display="flex" gap="16px">
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Lead Time (MIN)"
-                    label="Lead Time (MIN)"
-                    placeholder="Lead Time (MIN)"
-                    value={formValues["Lead Time (MIN)"]}
-                    error={!fieldValidation["Lead Time (MIN)"]}
-                    onChange={handleTextFieldChange("Lead Time (MIN)")}
-                  />
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Lead Time (MAX)"
-                    label="Lead Time (MAX)"
-                    placeholder="Lead Time (MAX)"
-                    value={formValues["Lead Time (MAX)"]}
-                    error={!fieldValidation["Lead Time (MAX)"]}
-                    onChange={handleTextFieldChange("Lead Time (MAX)")}
-                  />
-                </Box>
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Phone #"
+                      label="Phone #"
+                      placeholder="Phone #"
+                      value={formValues["Phone #"]}
+                      error={!fieldValidation["Phone #"]}
+                      onChange={handleTextFieldChange("Phone #")}
+                    />
+                  </Column>
 
-                <Box display="flex" gap="16px">
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Phone #"
-                    label="Phone #"
-                    placeholder="Phone #"
-                    value={formValues["Phone #"]}
-                    error={!fieldValidation["Phone #"]}
-                    onChange={handleTextFieldChange("Phone #")}
-                  />
-                  <StyledTextField
-                    required
-                    fullWidth
-                    name="Email"
-                    type="email"
-                    label="Email"
-                    autoComplete="off"
-                    placeholder="Email"
-                    value={formValues["Email"]}
-                    error={!fieldValidation["Email"]}
-                    onChange={handleTextFieldChange("Email")}
-                  />
-                </Box>
+                  <Column>
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Amazon Category"
+                      label="Amazon Category"
+                      placeholder="Amazon Category"
+                      value={formValues["Amazon Category"]}
+                      error={!fieldValidation["Amazon Category"]}
+                      onChange={handleTextFieldChange("Amazon Category")}
+                    />
+
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Account Status"
+                      label="Account Status"
+                      placeholder="Account Status"
+                      value={formValues["Account Status"]}
+                      error={!fieldValidation["Account Status"]}
+                      onChange={handleTextFieldChange("Account Status")}
+                    />
+
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Lead Time (MAX)"
+                      label="Lead Time (MAX)"
+                      placeholder="Lead Time (MAX)"
+                      value={formValues["Lead Time (MAX)"]}
+                      error={!fieldValidation["Lead Time (MAX)"]}
+                      onChange={handleTextFieldChange("Lead Time (MAX)")}
+                    />
+
+                    <StyledTextField
+                      required
+                      fullWidth
+                      name="Email"
+                      type="email"
+                      label="Email"
+                      autoComplete="off"
+                      placeholder="Email"
+                      value={formValues["Email"]}
+                      error={!fieldValidation["Email"]}
+                      onChange={handleTextFieldChange("Email")}
+                    />
+                  </Column>
+                </Row>
 
                 <StyledTextField
                   fullWidth
@@ -225,7 +228,7 @@ const AddNewVendor = ({ open, onClose }) => {
                   value={formValues["Note"]}
                   onChange={handleTextFieldChange("Note")}
                 />
-              </Stack>
+              </Box>
             </CustomAccordion>
 
             <Divider flexItem />
