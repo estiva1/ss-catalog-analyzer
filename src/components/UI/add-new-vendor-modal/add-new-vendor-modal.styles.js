@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "@mui/material";
 import { device } from "../../../breakpoints.styles";
 
 export const AddNewVendorModalContainer = styled.div`
@@ -18,6 +19,9 @@ export const AddNewVendorModalContainer = styled.div`
   }
   @media ${device.sm} {
     width: 370px;
+  }
+  @media ${device.xs} {
+    width: 300px;
   }
 `;
 
@@ -55,6 +59,31 @@ export const Column = styled.div`
 
   @media ${device.sm} {
     width: 100%;
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  &.MuiButton-contained,
+  &.MuiButton-text {
+    min-width: 36px;
+    font-family: Titillium Web;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: none;
+    white-space: nowrap;
+  }
+  &.MuiButton-contained {
+    background-color: #0057d3;
+    .MuiButton-endIcon {
+      transition: 0.15s;
+    }
+    &:hover {
+      .MuiButton-endIcon {
+        transition: 0.15s;
+        transform: translateX(2px);
+      }
+    }
   }
 `;
 
