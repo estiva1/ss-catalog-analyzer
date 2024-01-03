@@ -1,3 +1,5 @@
+import vendorKehe from "../assets/kehe-icon.png";
+
 export const crmTableData = [
   {
     id: 1,
@@ -10,7 +12,7 @@ export const crmTableData = [
     leadTimeMax: "N/A",
     phoneNumber: "188-500-1233",
     email: "liandri_co@gmail.com",
-    totalPos: 10,
+    totalPos: 16,
     accountStatus: "Account open",
     vendorNote: "N/A",
     adress: {
@@ -21,6 +23,7 @@ export const crmTableData = [
   {
     id: 2,
     vendorName: "Izanagi Corp.",
+    vendorImage: vendorKehe,
     userCategory: "Default",
     vendorStatus: "Open",
     amazonCategory: "N/A",
@@ -40,6 +43,7 @@ export const crmTableData = [
   {
     id: 3,
     vendorName: "Phayder Corp.",
+    vendorImage: null,
     userCategory: "Default",
     vendorStatus: "Rejected",
     amazonCategory: "N/A",
@@ -78,6 +82,7 @@ export const crmTableData = [
   {
     id: 5,
     vendorName: "Izanagi Corp.",
+    vendorImage: vendorKehe,
     userCategory: "Default",
     vendorStatus: "Rejected",
     amazonCategory: "N/A",
@@ -100,7 +105,7 @@ export const crmTableData = [
     userCategory: "Default",
     vendorStatus: "Prospect",
     amazonCategory: "N/A",
-    paymentStatus: "Prepaid",
+    paymentStatus: "Credit Card",
     leadTimeMin: "N/A",
     leadTimeMax: "N/A",
     phoneNumber: "188-500-1233",

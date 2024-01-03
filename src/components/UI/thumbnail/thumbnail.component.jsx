@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledThumbnail, ThumbnailText } from "./thumbnail.styles";
 
-const Thumbnail = ({ status }) => {
+const Thumbnail = ({ status = "" }) => {
   const COLORS = {
     Prospect: {
       primary: "#0057D3",
@@ -36,12 +36,12 @@ const Thumbnail = ({ status }) => {
       secondary: "#FFC7374C",
     },
   };
-  const border = COLORS[status].primary || "";
-  const background = COLORS[status].secondary || "";
+  const border = (status && COLORS[status].primary) || "#000";
+  const background = (status && COLORS[status].secondary) || "";
 
   return (
     <StyledThumbnail $borderColor={border} $backgroundColor={background}>
-      <ThumbnailText $color={border}>{status}</ThumbnailText>
+      <ThumbnailText $color={border}>{status ? status : "Status"}</ThumbnailText>
     </StyledThumbnail>
   );
 };
