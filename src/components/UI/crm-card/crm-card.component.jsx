@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  CardFooter,
+  Contacts,
   CrmCardContainer,
   CrmCardContent,
   CrmCardHeader,
@@ -53,7 +55,8 @@ const CrmCard = ({ cardData }) => {
             MAX:&nbsp;<Value>{leadTimeMax}</Value>
           </Value>
         </Box>
-        <Stack direction="row" gap="3px" alignItems="center" justifyContent="space-between">
+
+        <CardFooter>
           {vendorImage && vendorImage !== null ? (
             <VendorLogo src={vendorImage} loading="lazy" />
           ) : (
@@ -61,9 +64,11 @@ const CrmCard = ({ cardData }) => {
               <VendorFallbackLogo />
             </VendorFallback>
           )}
-          <RegularText>{phoneNumber}</RegularText>
-          <Link href="#">Send Email</Link>
-        </Stack>
+          <Contacts>
+            <RegularText>{phoneNumber}</RegularText>
+            <Link href="#">Send Email</Link>
+          </Contacts>
+        </CardFooter>
       </CrmCardContent>
     </CrmCardContainer>
   );

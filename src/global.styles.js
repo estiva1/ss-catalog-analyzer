@@ -2,9 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
+    min-height: 100vh;
     margin: 0;
     //overflow-y: scroll;
-    padding: 24px;
+    padding: 0;
     font-family: "Titillium Web", sans-serif !important;
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: antialiased;
@@ -36,6 +37,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   li {
     list-style-type: none;
+  }
+
+  html {
+    min-height: 100vh;
   }
 
   html:focus-within {

@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const CrmCardContainer = styled.div`
   display: flex;
-  padding: 14px 10px 10px 10px;
+  align-self: stretch;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  align-self: stretch;
-  border-radius: 4px;
+  padding: 14px 10px 10px 10px;
   background: #fff;
+  border-radius: 4px;
   box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.12);
 `;
 
@@ -24,6 +24,33 @@ export const CrmCardContent = styled.div`
   align-self: stretch;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const CardFooter = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Contacts = styled.div`
+  display: block;
+
+  :nth-child(1) {
+    margin-right: 10px;
+  }
+
+  @media (min-width: 960px) and (max-width: 1190px), (min-width: 600px) and (max-width: 690px), (max-width: 400px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    :nth-child(1) {
+      margin-right: 0;
+    }
+  }
 `;
 
 export const VendorLogo = styled.img`
@@ -76,7 +103,6 @@ export const Value = styled(Label)`
 `;
 
 export const RegularText = styled.span`
-  white-space: break-spaces;
   color: #4e5969;
   font-size: 0.875rem;
   font-style: normal;

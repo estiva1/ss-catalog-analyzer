@@ -121,7 +121,8 @@ const TaskTable = ({ data, itemFilter, selectedStatus }) => {
                   </StyledTableCell>
                   <StyledTableCell align="center">{task}</StyledTableCell>
                   <StyledTableCell align="center">
-                    <Stack spacing="6px">
+                    {/*29px * 4 - 2px*/}
+                    <Stack spacing="6px" maxHeight="114px" overflow="auto">
                       {assignee.map((user) => (
                         <Avatar key={user.id} name={user.name} avatar={user.avatar} />
                       ))}

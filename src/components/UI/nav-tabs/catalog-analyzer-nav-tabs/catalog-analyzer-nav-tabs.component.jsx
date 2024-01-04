@@ -14,6 +14,7 @@ import VendorFoldersView from "../../../vendor-folders-view/vendor-folders-view.
 import { CrmListTabIcon, TaskTabIcon, VendorFoldersTabIcon } from "./catalog-analyzer-nav-tabs.styles";
 import { tasksTableData } from "../../../../constants/tasksTableData";
 import TaskTable from "../../tables/tasks-table/tasks-table.component";
+import ListCardsViewSwitchTabs from "../list-cards-view-swich-tabs/list-cards-view-swich-tabs.component";
 
 const StyledTabs = styled((props) => (
   <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
@@ -90,6 +91,7 @@ const TabProps = (index) => {
 
 const CatalogAnalyzerNavTabs = () => {
   const [tab, setTab] = useState(0);
+  const [crmTab, setCrmTab] = useState(0);
   const [itemFilter, setItemFilter] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(null);
 
@@ -105,6 +107,10 @@ const CatalogAnalyzerNavTabs = () => {
   ];
 
   const handleItemFilterChange = (event) => setItemFilter(event.target.value);
+
+  const handleCrmTabChange = (event, newValue) => {
+    setCrmTab(newValue);
+  };
   const handleChange = (event, newTab) => {
     setTab(newTab);
   };
@@ -142,7 +148,6 @@ const CatalogAnalyzerNavTabs = () => {
             value={tab}
             onChange={handleChange}
             aria-label="catalog analyzer tabs"
-            //variant="fullWidth"
           >
             <StyledTab
               icon={<VendorFoldersTabIcon />}
@@ -150,9 +155,11 @@ const CatalogAnalyzerNavTabs = () => {
               label="Vendor Folders view"
               {...TabProps(0)}
             />
-            <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM List view" {...TabProps(0)} />
-            <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Task view" {...TabProps(0)} />
+            <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM View" {...TabProps(1)} />
+            <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Task view" {...TabProps(2)} />
           </StyledTabs>
+
+          <ListCardsViewSwitchTabs disabled={tab !== 1} value={crmTab} onChange={handleCrmTabChange} />
         </Stack>
       </Box>
 
@@ -164,7 +171,7 @@ const CatalogAnalyzerNavTabs = () => {
         )}
         {tab === 1 && (
           <CustomTabPanel key={1} index={1} value={tab}>
-            <CrmListView itemFilter={itemFilter} selectedStatus={selectedStatus} />
+            <CrmListView itemFilter={itemFilter} selectedStatus={selectedStatus} crmView={crmTab} />
           </CustomTabPanel>
         )}
         {tab === 2 && (

@@ -6,12 +6,16 @@ import CrmTableButtonGroup from "../UI/buttons/crm-table-button-group/crm-table-
 import { crmTableData } from "../../constants/crmTableData";
 import CrmCardView from "../crm-card-view/crm-card-view.component";
 
-const CrmListView = ({ itemFilter, selectedStatus }) => {
+const CrmListView = ({ itemFilter, selectedStatus, crmView }) => {
   return (
     <>
-      {/* <CrmTableButtonGroup />
-      <CrmTable data={crmTableData} itemFilter={itemFilter.toLowerCase()} selectedStatus={selectedStatus} /> */}
-      <CrmCardView data={crmTableData} itemFilter={itemFilter.toLowerCase()} />
+      {crmView === 0 && (
+        <>
+          <CrmTableButtonGroup />
+          <CrmTable data={crmTableData} itemFilter={itemFilter.toLowerCase()} selectedStatus={selectedStatus} />
+        </>
+      )}
+      {crmView === 1 && <CrmCardView data={crmTableData} itemFilter={itemFilter.toLowerCase()} />}
     </>
   );
 };

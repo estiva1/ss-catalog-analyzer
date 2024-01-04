@@ -42,6 +42,8 @@ export const Column = styled.div`
   padding: 8px 16px 16px;
 
   @media ${device.md} {
+    //static padding
+    //padding: 16px;
     padding: calc(8px + 1.5625vw);
   }
 
