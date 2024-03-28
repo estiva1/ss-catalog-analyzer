@@ -8,14 +8,23 @@ import VendorMoneyAmount from "../UI/vendor-money-amounts-grid/vendor-money-amou
 import VendorAndUsersDetails from "../UI/vendor-and-users-details/vendor-and-users-details.component";
 import DraggableContainer from "../UI/draggable-scroll-container/draggable-scroll-container.component";
 
-import { VendorFolderBarContainer, VendorFolderBarFrame } from "./vendor-folder-bar.styles";
+import {
+  ThumbnailText,
+  VendorFolderBarContainer,
+  VendorFolderBarFrame,
+  VendorFolderBarThumbnail,
+} from "./vendor-folder-bar.styles";
 
 const VendorFolderBar = ({ data }) => {
   const { users } = data || [];
-  const { vendor, moneyAmounts, tasksAndSkus } = data || {};
+  const { option, vendor, moneyAmounts, tasksAndSkus } = data || {};
 
   return (
     <VendorFolderBarFrame>
+      <VendorFolderBarThumbnail $option={option}>
+        <ThumbnailText $option={option}>{option}</ThumbnailText>
+      </VendorFolderBarThumbnail>
+
       <VendorFolderBarContainer>
         <DraggableContainer>
           <Stack direction="row" gap="8px" alignItems="center">

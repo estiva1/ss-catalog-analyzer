@@ -44,6 +44,7 @@ export const topCardsContent = [
 
 export const vendorFolderBarData = [
   {
+    option: "Wholesale",
     users: [
       {
         id: 1,
@@ -111,6 +112,7 @@ export const vendorFolderBarData = [
     },
   },
   {
+    option: "Retail",
     users: [
       {
         id: 1,
@@ -188,6 +190,7 @@ export const vendorFolderBarData = [
     },
   },
   {
+    option: "Wholesale",
     users: [
       {
         id: 1,
@@ -250,6 +253,7 @@ export const vendorFolderBarData = [
     },
   },
   {
+    option: "Wholesale",
     users: [
       {
         id: 5,
@@ -307,6 +311,7 @@ export const vendorFolderBarData = [
     },
   },
   {
+    option: "Retail",
     users: [
       {
         id: 4,

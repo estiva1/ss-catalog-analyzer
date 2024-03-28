@@ -152,11 +152,11 @@ const CatalogAnalyzerNavTabs = () => {
             <StyledTab
               icon={<VendorFoldersTabIcon />}
               iconPosition="start"
-              label="Vendor Folders view"
+              label="Vendor view"
               {...TabProps(0)}
             />
             <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM View" {...TabProps(1)} />
-            <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Task view" {...TabProps(2)} />
+            <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Tasks" {...TabProps(2)} />
           </StyledTabs>
 
           <ListCardsViewSwitchTabs disabled={tab !== 1} value={crmTab} onChange={handleCrmTabChange} />
