@@ -263,36 +263,36 @@ export const vendorFolderBarData = [
       catalog: [
         {
           label: "Potential\nNew Orders:",
-          value: 3293,
+          value: null,
           tooltipText: "Some text",
         },
         {
           label: "Estimated\nProfit:",
-          value: -2982,
+          value: null,
           tooltipText: "Some text",
         },
       ],
       reorders: [
         {
           label: "Potential\nReorders:",
-          value: 29825,
+          value: 0.06,
           tooltipText: "Some text",
         },
         {
           label: "Estimated\nProfit:",
-          value: -2982,
+          value: null,
           tooltipText: "Some text",
         },
       ],
       vendorSales: [
         {
           label: "Total\nSales:",
-          value: 2982,
+          value: null,
           tooltipText: "Some text",
         },
         {
           label: "Actual\nProfit:",
-          value: -2982,
+          value: null,
           tooltipText: "Some text",
         },
       ],

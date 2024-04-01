@@ -76,8 +76,8 @@ const VendorMoneyAmount = ({ data }) => {
   return (
     <Stack direction="row" gap="8px">
       <Item heading="Catalog" itemData={catalog} />
-      <Item heading="Reorders" itemData={reorders} />
       <Item heading="Vendor Sales" itemData={vendorSales} />
+      <Item heading="Reorders" itemData={reorders} />
     </Stack>
   );
 };
