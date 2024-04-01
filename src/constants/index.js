@@ -254,16 +254,10 @@ export const vendorFolderBarData = [
   },
   {
     option: "Wholesale",
-    users: [
-      {
-        id: 5,
-        name: "Trevor Henderson",
-        avatar: userFive,
-      },
-    ],
+    users: null,
     vendor: {
-      vendorName: "Kehe",
-      vendorImage: vendorKehe,
+      vendorName: "--",
+      vendorImage: null,
     },
     moneyAmounts: {
       catalog: [

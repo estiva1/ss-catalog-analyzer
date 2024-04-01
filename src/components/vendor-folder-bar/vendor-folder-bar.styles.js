@@ -18,7 +18,7 @@ export const VendorFolderBarContainer = styled.div`
   border: 1px solid #00a3ff;
   background: #fff;
   box-shadow: 4px 4px 25px 0px rgba(111, 213, 246, 0.25);
-  //overflow-x: hidden;
+  overflow-x: hidden;
 `;
 
 export const VendorFolderBarThumbnail = styled.div`
