@@ -66,7 +66,7 @@ const CrmCard = ({ cardData }) => {
           )}
           <Contacts>
             <RegularText>{phoneNumber}</RegularText>
-            <Link href="#">Send Email</Link>
+            <Link href="#">Copy Email</Link>
           </Contacts>
         </CardFooter>
       </CrmCardContent>

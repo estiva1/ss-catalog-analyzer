@@ -94,6 +94,7 @@ const CatalogAnalyzerNavTabs = () => {
   const [crmTab, setCrmTab] = useState(0);
   const [itemFilter, setItemFilter] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(null);
+  const [selectedVendor, setSelectedVendor] = useState(null);
 
   const dropdownTestOptions = [
     "prospect",
@@ -105,6 +106,7 @@ const CatalogAnalyzerNavTabs = () => {
     "ach",
     "net 30 terms",
   ];
+  const vendorOptions = ["KEHE", "ABC", "--"];
 
   const handleItemFilterChange = (event) => setItemFilter(event.target.value);
 
@@ -118,48 +120,67 @@ const CatalogAnalyzerNavTabs = () => {
   return (
     <Box>
       <Box sx={{ marginBottom: "12px" }}>
-        <Stack direction="row" gap="10px" alignItems="center" justifyContent="end">
-          <AnimatePresence mode="wait">
-            {(tab === 1 || tab === 2) && (
-              <MotionWrapper>
-                <Stack direction="row" spacing="10px" alignItems="center">
-                  <div style={{ width: "320px" }}>
-                    <CustomizedSearchField
-                      id="searchfield-for-tables"
-                      fullWidth
-                      placeholder="Search by Name"
-                      value={itemFilter}
-                      onChange={handleItemFilterChange}
-                    />
+        <Stack sx={{ position: "relative" }} direction="row" gap="10px" alignItems="center" justifyContent="end">
+          <Stack direction="row" spacing="10px" alignItems="center">
+            <div style={{ width: "320px" }}>
+              <CustomizedSearchField
+                id="searchfield-for-tables"
+                fullWidth
+                placeholder="Search by Name"
+                value={itemFilter}
+                onChange={handleItemFilterChange}
+              />
+            </div>
+            <div style={{ width: "200px" }}>
+              <Dropdown
+                placeholder="Filter by Vendor"
+                data={dropdownTestOptions}
+                setSelectedValue={setSelectedStatus}
+              />
+            </div>
+            <AnimatePresence mode="wait">
+              {tab === 0 && (
+                <MotionWrapper>
+                  <div style={{ width: "200px" }}>
+                    <Dropdown placeholder="Vendor Type" data={vendorOptions} setSelectedValue={setSelectedVendor} />
                   </div>
-                  <div style={{ width: "250px" }}>
-                    <Dropdown
-                      placeholder="Filter by Vendor"
-                      data={dropdownTestOptions}
-                      setSelectedValue={setSelectedStatus}
-                    />
-                  </div>
-                </Stack>
-              </MotionWrapper>
-            )}
-          </AnimatePresence>
+                </MotionWrapper>
+              )}
+            </AnimatePresence>
+          </Stack>
 
-          <StyledTabs
-            value={tab}
-            onChange={handleChange}
-            aria-label="catalog analyzer tabs"
-          >
+          <StyledTabs value={tab} onChange={handleChange} aria-label="catalog analyzer tabs">
+            <StyledTab icon={<VendorFoldersTabIcon />} iconPosition="start" label="Vendor view" {...TabProps(0)} />
             <StyledTab
-              icon={<VendorFoldersTabIcon />}
+              icon={<CrmListTabIcon />}
               iconPosition="start"
-              label="Vendor view"
-              {...TabProps(0)}
+              label={
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  CRM <span style={{ width: "48px" }}></span>
+                </div>
+              }
+              {...TabProps(1)}
             />
-            <StyledTab icon={<CrmListTabIcon />} iconPosition="start" label="CRM View" {...TabProps(1)} />
             <StyledTab sx={{ mr: 0 }} icon={<TaskTabIcon />} iconPosition="start" label="Tasks" {...TabProps(2)} />
           </StyledTabs>
 
-          <ListCardsViewSwitchTabs disabled={tab !== 1} value={crmTab} onChange={handleCrmTabChange} />
+          {tab === 1 ? (
+            <ListCardsViewSwitchTabs disabled={tab !== 1} value={crmTab} onChange={handleCrmTabChange} />
+          ) : (
+            <span
+              style={{
+                position: "absolute",
+                right: "126px",
+                fontFamily: "Titillium Web",
+                fontSize: "1.25rem",
+                fontWeight: "700",
+                lineHeight: "1rem",
+                color: "#4E5969",
+              }}
+            >
+              view
+            </span>
+          )}
         </Stack>
       </Box>
 
