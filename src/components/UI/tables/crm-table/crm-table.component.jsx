@@ -18,6 +18,8 @@ import {
   StyledTableRow,
 } from "./crm-table.styles";
 
+import CrmTableDropdown from "../../crm-table-dropdown/crm-table-dropdown.component";
+
 const generateHighlightedText = (text, filterValue) => {
   const lowerText = text.toLowerCase();
   const lowerFilterValue = filterValue.toLowerCase();
@@ -104,6 +106,44 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
+  const COLORS = {
+    Prospect: {
+      primary: "#0057D3",
+      secondary: "#DAE6FF",
+    },
+    Open: {
+      primary: "#009C34",
+      secondary: "#D4FFE5",
+    },
+    Rejected: {
+      primary: "#FF9900",
+      secondary: "#FFEDCF",
+    },
+    Closed: {
+      primary: "#CF0909",
+      secondary: "#FFD6D6",
+    },
+    Prepaid: {
+      primary: "#8F5AFF",
+      secondary: "#EEE2FF",
+    },
+    "Credit Card": {
+      primary: "#00A3FF",
+      secondary: "#B3E3FF",
+    },
+    ACH: {
+      primary: "#00F451",
+      secondary: "#E6FFFC",
+    },
+    "Net 30 Terms": {
+      primary: "#FFCB00",
+      secondary: "#FFC7374C",
+    },
+  };
+
+  const [selectedVendorStatus, setSelectedVendorStatus] = useState(null);
+  const [selectedPaymentStatus, setSelectedPaymentStatus] = useState(null);
+
   return (
     <Box sx={{ width: "100%" }}>
       <StyledTableContainer>
@@ -152,16 +192,24 @@ const CrmTable = ({ data, itemFilter, selectedStatus }) => {
                       <CellTextSecondary>{generateHighlightedText(vendorName, itemFilter)}</CellTextSecondary>{" "}
                     </StyledTableCell>
                     <StyledTableCell align="center">{userCategory}</StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Box display="inline-table">
-                        <Thumbnail status={vendorStatus} />
-                      </Box>
+                    <StyledTableCell align="center" style={{ padding: 0, width: "105px" }}>
+                      <CrmTableDropdown
+                        // colorPrimary={COLORS[vendorStatus].primary}
+                        // colorSecondary={COLORS[vendorStatus].secondary}
+                        initial={vendorStatus}
+                        data={["Prospect", "Open", "Rejected", "Closed"]}
+                        setSelectedValue={setSelectedVendorStatus}
+                      />
                     </StyledTableCell>
                     <StyledTableCell align="center">{amazonCategory}</StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Box display="inline-table">
-                        <Thumbnail status={paymentStatus} />
-                      </Box>
+                    <StyledTableCell align="center" style={{ padding: 0, width: "130px" }}>
+                      <CrmTableDropdown
+                        // colorPrimary={COLORS[paymentStatus].primary}
+                        // colorSecondary={COLORS[paymentStatus].secondary}
+                        initial={paymentStatus}
+                        data={["Prepaid", "Credit Card", "ACH", "Net 30 Terms"]}
+                        setSelectedValue={setSelectedPaymentStatus}
+                      />
                     </StyledTableCell>
                     <StyledTableCell align="center">{leadTimeMin}</StyledTableCell>
                     <StyledTableCell align="center">{leadTimeMax}</StyledTableCell>
