@@ -13,6 +13,7 @@ const StyledTabs = styled(({ disabled, ...props }) => (
 
   "& .MuiButtonBase-root": {
     minHeight: "unset",
+    alignItems: "start",
   },
   "& .MuiTabs-indicator": {
     backgroundColor: "#00A3FF",
