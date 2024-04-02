@@ -8,10 +8,12 @@ const BigCard = ({ card }) => {
   return (
     <CardContainer $border={cardBorder} $backgroundColor={cardColor}>
       <Stack direction="row" gap="10px" alignItems="center">
-        <ItemImageContainer>
-          <ItemImage src={image} />
-        </ItemImageContainer>
-        <Stack spacing="8px" alignItems="center">
+        {image && (
+          <ItemImageContainer>
+            <ItemImage src={image} />
+          </ItemImageContainer>
+        )}
+        <Stack direction={image ? "column" : "row"} spacing="8px" alignItems="center">
           <CardValue>{value}</CardValue>
           <CardDescriptionText>{name}</CardDescriptionText>
         </Stack>
