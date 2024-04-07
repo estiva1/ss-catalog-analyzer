@@ -23,7 +23,7 @@ export const ModalContent = styled(Box)`
   border: 1px solid #e6e6e6;
   background: #f8fafb;
   box-shadow: 4px 4px 25px 0px rgba(111, 213, 246, 0.25);
-  overflow-y: scroll;
+  //overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 0.45rem;

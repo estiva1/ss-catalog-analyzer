@@ -5,32 +5,20 @@ import { device } from "../../../breakpoints.styles";
 export const AddNewVendorModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 780px;
+  width: 1266px;
   padding: calc(8px + 1.5625vw);
   align-items: center;
   align-self: stretch;
   gap: 30px;
-
-  @media ${device.lg} {
-    width: 650px;
-  }
-  @media ${device.md} {
-    width: 550px;
-  }
-  @media ${device.sm} {
-    width: 370px;
-  }
-  @media ${device.xs} {
-    width: 300px;
-  }
 `;
 
 export const FieldForm = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 40px;
-  align-self: stretch;
+  width: 100%;
+  //align-items: flex-end;
+  gap: 24px;
+  //align-self: stretch;
 `;
 
 export const ListContainer = styled.div`
@@ -41,25 +29,6 @@ export const ListContainer = styled.div`
   gap: 16px;
   border-radius: 8px;
   background: #fff;
-`;
-
-export const Row = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 16px;
-  margin-inline: -8px;
-`;
-
-export const Column = styled.div`
-  width: 50%;
-  padding-inline: 8px;
-  > * {
-    margin-bottom: 16px !important;
-  }
-
-  @media ${device.sm} {
-    width: 100%;
-  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -96,9 +65,45 @@ export const Heading = styled.h2`
   line-height: 1.875rem;
 `;
 
+export const HeadingMedium = styled.h3`
+  color: #000;
+  font-family: Titillium Web;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25rem;
+`;
+
+export const HeadingDot = styled.span`
+  min-width: 15px;
+  min-height: 15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #00a3ff;
+`;
+
 export const StickDivider = styled.span`
   width: 88px;
   height: 4px;
   border-radius: 2px;
   background: #00a3ff;
+`;
+
+export const SubHeadline = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+`;
+
+export const CardContent = styled.div`
+  padding-top: 16px;
+`;
+
+export const VendorImageLoaderFrame = styled.div`
+  width: 64px;
+  height: 64px;
+  background: #e8f7ff;
+  border-radius: 20px;
+  border: 1px dashed #00a3ff;
 `;
