@@ -4,7 +4,7 @@ export const CatalogAnalizerLayout = styled.div`
   box-sizing: border-box;
   display: block;
   margin: 0 auto;
-  max-width: 1600px;
+  max-width: 1440px;
   padding: 8px;
   width: 100%;
 

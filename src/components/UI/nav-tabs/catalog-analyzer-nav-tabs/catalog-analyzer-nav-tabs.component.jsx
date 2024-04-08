@@ -89,8 +89,8 @@ const TabProps = (index) => {
   };
 };
 
-const CatalogAnalyzerNavTabs = () => {
-  const [tab, setTab] = useState(0);
+const CatalogAnalyzerNavTabs = ({ tab, setTab }) => {
+  //const [tab, setTab] = useState(0);
   const [crmTab, setCrmTab] = useState(0);
   const [itemFilter, setItemFilter] = useState("");
   const [selectedStatus, setSelectedStatus] = useState(null);
