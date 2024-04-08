@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "@mui/material";
+import { Button, Link } from "@mui/material";
 import { device } from "../../../breakpoints.styles";
 
 export const AddNewVendorModalContainer = styled.div`
@@ -95,4 +95,12 @@ export const VendorImageLoaderFrame = styled.div`
   background: #e8f7ff;
   border-radius: 20px;
   border: 1px dashed #00a3ff;
+`;
+
+export const StyledMuiLink = styled(Link)`
+  font-family: Titillium Web !important;
+  font-size: 0.625rem !important;
+  font-weight: 600 !important;
+  line-height: 18px !important;
+  text-align: left !important;
 `;

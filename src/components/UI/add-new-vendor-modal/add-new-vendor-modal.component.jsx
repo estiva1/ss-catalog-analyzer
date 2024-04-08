@@ -17,6 +17,7 @@ import {
   HeadingMedium,
   StickDivider,
   StyledButton,
+  StyledMuiLink,
   SubHeadline,
   VendorImageLoaderFrame,
 } from "./add-new-vendor-modal.styles";
@@ -342,10 +343,20 @@ const AddNewVendor = ({ open, onClose }) => {
 
               <Grid item xs={4}>
                 <Item>
-                  <SubHeadline>
-                    <HeadingDot />
-                    <HeadingMedium>Adress</HeadingMedium>
-                  </SubHeadline>
+                  <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
+                    <SubHeadline>
+                      <HeadingDot />
+                      <HeadingMedium>Address</HeadingMedium>
+                    </SubHeadline>
+                    <StyledMuiLink
+                      component="button"
+                      onClick={() => {
+                        console.info("I'm a button.");
+                      }}
+                    >
+                      Add New Address
+                    </StyledMuiLink>
+                  </Stack>
                   <CardContent>
                     <Grid container spacing={1.5}>
                       <Grid item xs={6}>
@@ -427,10 +438,20 @@ const AddNewVendor = ({ open, onClose }) => {
 
               <Grid item xs={4}>
                 <Item>
-                  <SubHeadline>
-                    <HeadingDot />
-                    <HeadingMedium>Vendor's Website</HeadingMedium>
-                  </SubHeadline>
+                  <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
+                    <SubHeadline>
+                      <HeadingDot />
+                      <HeadingMedium>Vendor's Website</HeadingMedium>
+                    </SubHeadline>
+                    <StyledMuiLink
+                      component="button"
+                      onClick={() => {
+                        console.info("I'm a button.");
+                      }}
+                    >
+                      Add New Website
+                    </StyledMuiLink>
+                  </Stack>
                   <CardContent>
                     <Grid container spacing={1.5}>
                       <Grid item xs={12}>
@@ -487,10 +508,20 @@ const AddNewVendor = ({ open, onClose }) => {
               </Grid>
               <Grid item xs={4}>
                 <Item>
-                  <SubHeadline>
-                    <HeadingDot />
-                    <HeadingMedium>Sales Rep Info</HeadingMedium>
-                  </SubHeadline>
+                  <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
+                    <SubHeadline>
+                      <HeadingDot />
+                      <HeadingMedium>Sales Rep Info</HeadingMedium>
+                    </SubHeadline>
+                    <StyledMuiLink
+                      component="button"
+                      onClick={() => {
+                        console.info("I'm a button.");
+                      }}
+                    >
+                      Add New Rep
+                    </StyledMuiLink>
+                  </Stack>
                   <CardContent>
                     <Grid container spacing={1.5}>
                       <Grid item xs={12}>
