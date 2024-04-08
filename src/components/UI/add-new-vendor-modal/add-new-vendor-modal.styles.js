@@ -5,10 +5,11 @@ import { device } from "../../../breakpoints.styles";
 export const AddNewVendorModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1266px;
+  width: 95vw;
+  max-width: 1440px;
   padding: calc(8px + 1.5625vw);
+  padding-right: calc(8px + 1.5625vw - 0.45rem);
   align-items: center;
-  align-self: stretch;
   gap: 30px;
 `;
 
@@ -16,19 +17,7 @@ export const FieldForm = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  //align-items: flex-end;
   gap: 24px;
-  //align-self: stretch;
-`;
-
-export const ListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  padding: 24px 20px;
-  gap: 16px;
-  border-radius: 8px;
-  background: #fff;
 `;
 
 export const StyledButton = styled(Button)`
