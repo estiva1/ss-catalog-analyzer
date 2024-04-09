@@ -11,6 +11,13 @@ export const StyledModal = styled(Modal)`
 export const ModalContent = styled(Box)`
   position: absolute;
   inset: 0;
+  ${({ $cornerPlacement }) =>
+    $cornerPlacement &&
+    `
+    inset: unset;
+    top: 0;
+    right: 0;
+  `}
   margin: auto;
   background-color: #fff;
   border-radius: 16px;

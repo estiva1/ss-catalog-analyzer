@@ -65,6 +65,26 @@ export const vendorFolderBarData = [
     vendor: {
       vendorName: "Kehe",
       vendorImage: vendorKehe,
+      vendorPhone: "188-500-1233",
+      vendorEmail: "kehe@kehe.com",
+      vendorNotes: "",
+      userCategory: "Prepaid",
+      vendorType: "Retail",
+      amazonCat: "Category",
+      accountStatus: "Open",
+      leadTimeMin: "N/A",
+      leadTimeMax: "N/A",
+      street: "28 Merry Ln",
+      country: "East Hanover NI, 07999",
+      website: "vendor.com",
+      login: "admin",
+      password: "password",
+      notes: null,
+      salesRepName: "Master Chief",
+      salesRepPosition: "Petty Officer",
+      salesRepPhone: "188-500-1233",
+      salesRepEmail: "master_chief@unsc.com",
+      salesRepFax: "N/A"
     },
     moneyAmounts: {
       catalog: [

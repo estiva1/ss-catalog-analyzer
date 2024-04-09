@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Box, Card, Stack } from "@mui/material";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 import BadgeButton from "../buttons/badge-button/badge-button.component";
 import UsersContainer from "../vendor-users-container/vendor-users-container.component";
+import AdjustVendorInfoModal from "../adjust-vendor-info-modal/adjust-vendor-info-modal.component";
 
 import {
   AddAssigneeButton,
@@ -19,6 +20,15 @@ import {
 } from "./vendor-and-users-details.styles";
 
 const VendorAndUsersDetails = ({ users, vendor }) => {
+  const [isAdjustVendorInfoOpen, setIsAdjustVendorInfoOpen] = useState(false);
+
+  const handleAdjustVendorInfoOpen = () => {
+    setIsAdjustVendorInfoOpen(true);
+  };
+  const handleAdjustVendorInfoClose = () => {
+    setIsAdjustVendorInfoOpen(false);
+  };
+
   return (
     <Card elevation={0} sx={{ overflow: "unset" }}>
       <DescriptionSmallHighlighted style={{ marginBottom: "3px", justifyContent: "end" }}>
@@ -49,7 +59,7 @@ const VendorAndUsersDetails = ({ users, vendor }) => {
             </VendorFallback>
           )}
 
-          <BadgeButton />
+          <BadgeButton onClick={handleAdjustVendorInfoOpen} />
         </Box>
 
         <Box>
@@ -60,6 +70,8 @@ const VendorAndUsersDetails = ({ users, vendor }) => {
           <DescriptionSmallGrey>{vendor.vendorName}</DescriptionSmallGrey>
         </Box>
       </Stack>
+
+      <AdjustVendorInfoModal open={isAdjustVendorInfoOpen} onClose={handleAdjustVendorInfoClose} vendor={vendor} />
     </Card>
   );
 };

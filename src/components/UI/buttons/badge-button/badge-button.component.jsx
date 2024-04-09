@@ -1,9 +1,9 @@
 import React from "react";
 import { SettingsButton, SettingsIcon } from "./badge-button.styles";
 
-const BadgeButton = () => {
+const BadgeButton = ({ ...props }) => {
   return (
-    <SettingsButton>
+    <SettingsButton {...props}>
       <SettingsIcon />
     </SettingsButton>
   );
