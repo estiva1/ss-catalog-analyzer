@@ -299,7 +299,7 @@ const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
             size="large"
             endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: "1.125rem !important" }} />}
           >
-            Add New Vendor
+            Complete Adjusting
           </StyledButton>
         </Stack>
       </AdjustVendorInfoModalContainer>
