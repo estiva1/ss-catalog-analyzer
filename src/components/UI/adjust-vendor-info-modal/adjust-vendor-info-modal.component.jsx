@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Divider, Stack } from "@mui/material";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+
 import CustomModal from "../modal/custom-modal.component";
+import BadgeButton from "../buttons/badge-button/badge-button.component";
+
 import {
   AdjustVendorInfoModalContainer,
   EditBox,
@@ -13,6 +17,7 @@ import {
   InfoBlock,
   InfoTextNormal,
   StickDivider,
+  StyledButton,
   StyledMuiLink,
   SubHeadline,
   Vendor,
@@ -21,7 +26,6 @@ import {
   VendorLogo,
   VendorName,
 } from "./adjust-vendor-info-modal.styles";
-import BadgeButton from "../buttons/badge-button/badge-button.component";
 
 const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
   return (
@@ -152,10 +156,21 @@ const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
           </InfoBlock>
 
           <InfoBlock>
-            <SubHeadline>
-              <HeadingDot />
-              <HeadingMedium>Address</HeadingMedium>
-            </SubHeadline>
+            <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+              <SubHeadline>
+                <HeadingDot />
+                <HeadingMedium>Address</HeadingMedium>
+              </SubHeadline>
+              <StyledMuiLink
+                sx={{ fontSize: "0.625rem !important" }}
+                component="button"
+                onClick={() => {
+                  console.info("I'm a button.");
+                }}
+              >
+                Add new address
+              </StyledMuiLink>
+            </Stack>
             <InfoBar>
               <Info>
                 <Stack spacing="10px" marginRight="10px">
@@ -177,10 +192,21 @@ const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
           </InfoBlock>
 
           <InfoBlock>
-            <SubHeadline>
-              <HeadingDot />
-              <HeadingMedium>Vendor's Website</HeadingMedium>
-            </SubHeadline>
+            <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+              <SubHeadline>
+                <HeadingDot />
+                <HeadingMedium>Vendor's Website</HeadingMedium>
+              </SubHeadline>
+              <StyledMuiLink
+                sx={{ fontSize: "0.625rem !important" }}
+                component="button"
+                onClick={() => {
+                  console.info("I'm a button.");
+                }}
+              >
+                Add new website
+              </StyledMuiLink>
+            </Stack>
             <InfoBar>
               <Info>
                 <Stack spacing="10px" marginRight="10px">
@@ -217,10 +243,21 @@ const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
           </InfoBlock>
 
           <InfoBlock>
-            <SubHeadline>
-              <HeadingDot />
-              <HeadingMedium>Sales Rep Info</HeadingMedium>
-            </SubHeadline>
+            <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+              <SubHeadline>
+                <HeadingDot />
+                <HeadingMedium>Sales Rep Info</HeadingMedium>
+              </SubHeadline>
+              <StyledMuiLink
+                sx={{ fontSize: "0.625rem !important" }}
+                component="button"
+                onClick={() => {
+                  console.info("I'm a button.");
+                }}
+              >
+                Add new Rep
+              </StyledMuiLink>
+            </Stack>
             <InfoBar>
               <Info>
                 <Stack spacing="10px" marginRight="10px">
@@ -251,6 +288,19 @@ const AdjustVendorInfoModal = ({ open, onClose, vendor }) => {
               </Info>
             </InfoBar>
           </InfoBlock>
+        </Stack>
+
+        <Stack direction="row" gap="16px" justifyContent="end">
+          <StyledButton variant="text" size="large" onClick={onClose}>
+            Cancel
+          </StyledButton>
+          <StyledButton
+            variant="contained"
+            size="large"
+            endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: "1.125rem !important" }} />}
+          >
+            Add New Vendor
+          </StyledButton>
         </Stack>
       </AdjustVendorInfoModalContainer>
     </CustomModal>

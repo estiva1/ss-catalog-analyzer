@@ -8,7 +8,7 @@ export const AdjustVendorInfoModalContainer = styled.div`
   max-width: 95vh;
   padding: 30px;
   padding-right: calc(30px - 0.45rem);
-  align-items: center;
+  //align-items: center;
   gap: 30px;
 `;
 
