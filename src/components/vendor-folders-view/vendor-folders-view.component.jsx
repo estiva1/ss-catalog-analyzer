@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import { Stack } from "@mui/material";
 import { vendorFolderBarData } from "../../constants";
 import VendorFolderBar from "../../components/vendor-folder-bar/vendor-folder-bar.component";
+import ChooseVendorsModal from "../UI/choose-vendors-modal/choose-vendors-modal.component";
 
 const ScrollReveal = ({ index, children }) => {
   return (
@@ -27,14 +28,27 @@ const ScrollReveal = ({ index, children }) => {
 };
 
 const VendorFoldersView = () => {
+  const [isChooseVendorsOpen, setIsChooseVendorsOpen] = useState(true);
+
+  const handleChooseVendorsOpen = () => {
+    setIsChooseVendorsOpen(true);
+  };
+  const handleChooseVendorsClose = () => {
+    setIsChooseVendorsOpen(false);
+  };
+
   return (
-    <Stack spacing="24px" overflow="hidden">
-      {vendorFolderBarData.map((vendorFolderBar, index) => (
-        <ScrollReveal key={`vendor-folder-bar-${index}`} index={index}>
-          <VendorFolderBar data={vendorFolderBar} />
-        </ScrollReveal>
-      ))}
-    </Stack>
+    <>
+      <Stack spacing="24px" overflow="hidden">
+        {vendorFolderBarData.map((vendorFolderBar, index) => (
+          <ScrollReveal key={`vendor-folder-bar-${index}`} index={index}>
+            <VendorFolderBar data={vendorFolderBar} />
+          </ScrollReveal>
+        ))}
+      </Stack>
+
+      <ChooseVendorsModal open={isChooseVendorsOpen} onClose={handleChooseVendorsClose} data={vendorFolderBarData} />
+    </>
   );
 };
 
