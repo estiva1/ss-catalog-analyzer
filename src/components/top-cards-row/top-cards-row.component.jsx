@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Divider, Stack } from "@mui/material";
-import { topCardsContent } from "../../constants";
+import { topCardsContent, vendorFolderBarData } from "../../constants";
 import { Container } from "./top-cards-row.styles";
 
 import BigCard from "../UI/big-card/big-card.component";
@@ -9,6 +9,7 @@ import Ripple from "../UI/buttons/_ripple/ripple.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../UI/buttons/button/button.component";
 import AddNewVendor from "../UI/add-new-vendor-modal/add-new-vendor-modal.component";
 import DraggableContainer from "../UI/draggable-scroll-container/draggable-scroll-container.component";
+import ChooseVendorsModal from "../UI/choose-vendors-modal/choose-vendors-modal.component";
 
 const TopCardsRow = () => {
   const [isAddNewVendorOpen, setIsAddNewVendorOpen] = useState(false);
@@ -36,7 +37,7 @@ const TopCardsRow = () => {
           </Stack>
         </DraggableContainer>
       </Container>
-      <AddNewVendor open={isAddNewVendorOpen} onClose={handleAddNewVendorClose} />
+      <ChooseVendorsModal open={isAddNewVendorOpen} onClose={handleAddNewVendorClose} data={vendorFolderBarData} />
     </>
   );
 };

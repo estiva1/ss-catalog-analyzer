@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Button, Link } from "@mui/material";
-import { device } from "../../../breakpoints.styles";
 
 export const AddNewVendorModalContainer = styled.div`
   display: flex;

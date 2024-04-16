@@ -18,6 +18,7 @@ import {
   VendorFallbackLogo,
   VendorLogo,
 } from "./vendor-and-users-details.styles";
+import ChooseVendorsModal from "../choose-vendors-modal/choose-vendors-modal.component";
 
 const VendorAndUsersDetails = ({ users, vendor }) => {
   const [isAdjustVendorInfoOpen, setIsAdjustVendorInfoOpen] = useState(false);
@@ -71,7 +72,7 @@ const VendorAndUsersDetails = ({ users, vendor }) => {
         </Box>
       </Stack>
 
-      <AdjustVendorInfoModal open={isAdjustVendorInfoOpen} onClose={handleAdjustVendorInfoClose} vendor={vendor} />
+      <ChooseVendorsModal open={isAdjustVendorInfoOpen} onClose={handleAdjustVendorInfoClose} vendor={vendor} />
     </Card>
   );
 };

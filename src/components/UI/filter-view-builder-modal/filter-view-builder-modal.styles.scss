@@ -7,6 +7,29 @@
 .queryBuilder {
   min-width: 420px;
 }
+.ant-select-dropdown {
+  z-index: 999999;
+}
+
+// Override the text of the + Rule button
+.ruleGroup-addRule {
+  > span {
+    display: none;
+  }
+}
+.ruleGroup-addRule::after {
+  content: "Add Condition";
+}
+
+// Override the text of the + Group button
+.ruleGroup-addGroup {
+  > span {
+    display: none;
+  }
+}
+.ruleGroup-addGroup::after {
+  content: "Add Group";
+}
 
 // Styles for when "Use validation" option is selected
 .validateQuery {
