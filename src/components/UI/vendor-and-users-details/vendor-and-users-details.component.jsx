@@ -72,7 +72,7 @@ const VendorAndUsersDetails = ({ users, vendor }) => {
         </Box>
       </Stack>
 
-      {/* <ChooseVendorsModal open={isAdjustVendorInfoOpen} onClose={handleAdjustVendorInfoClose} vendor={vendor} /> */}
+      <AdjustVendorInfoModal open={isAdjustVendorInfoOpen} onClose={handleAdjustVendorInfoClose} vendor={vendor} />
     </Card>
   );
 };

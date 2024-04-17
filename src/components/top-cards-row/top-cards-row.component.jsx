@@ -37,7 +37,8 @@ const TopCardsRow = () => {
           </Stack>
         </DraggableContainer>
       </Container>
-      <ChooseVendorsModal open={isAddNewVendorOpen} onClose={handleAddNewVendorClose} data={vendorFolderBarData} />
+      <AddNewVendor open={isAddNewVendorOpen} onClose={handleAddNewVendorClose} />
+      {/* <ChooseVendorsModal open={isAddNewVendorOpen} onClose={handleAddNewVendorClose} data={vendorFolderBarData} /> */}
     </>
   );
 };
