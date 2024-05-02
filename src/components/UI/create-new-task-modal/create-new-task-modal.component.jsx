@@ -18,19 +18,12 @@ import {
   CraeteNewTaskModalContainer,
   Heading,
   Headline,
-  Info,
-  InfoBar,
   InfoTextBig,
   InfoTextNormal,
   InputLabel,
-  StyledButton,
+  StickDivider,
   SubHeading,
   SupportingTextGrey,
-  Vendor,
-  VendorFallback,
-  VendorFallbackLogo,
-  VendorLogo,
-  VendorName,
 } from "./create-new-task-modal.styles";
 import Dropdown from "../dropdown/dropdown.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../buttons/button/button.component";
@@ -66,6 +59,7 @@ const CraeteNewTaskModal = ({ open, onClose, data }) => {
               omnis assumenda dolore quam, sequi, hic nihil et fuga rerum, magnam consectetur exercitationem soluta
               incidunt pariatur!
             </SubHeading>
+            <StickDivider />
           </Headline>
 
           <Box sx={{ flexGrow: 1, width: "580px" }}>
@@ -101,7 +95,7 @@ const CraeteNewTaskModal = ({ open, onClose, data }) => {
                       maxWidth="218px"
                       height="32px"
                       padding="8px 16px"
-                      style={{fontSize: "0.875rem"}}
+                      style={{ fontSize: "0.875rem" }}
                     >
                       Upload File
                       <Ripple color="#1565D8" />
