@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { ListItem, PrimaryText, StyledAutocomplete } from "./dropdown.styles";
 
-const Dropdown = ({ data = {}, placeholder = "Select", setSelectedValue, disabled }) => {
+const Dropdown = ({ data = {}, placeholder = "Select", setSelectedValue, disabled, ...props }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
 
@@ -13,6 +13,7 @@ const Dropdown = ({ data = {}, placeholder = "Select", setSelectedValue, disable
 
   return (
     <StyledAutocomplete
+      props
       id="styled-autocomplete"
       size="small"
       disabled={disabled}

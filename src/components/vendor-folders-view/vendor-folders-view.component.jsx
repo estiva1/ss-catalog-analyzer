@@ -5,6 +5,7 @@ import { Stack } from "@mui/material";
 import { vendorFolderBarData } from "../../constants";
 import VendorFolderBar from "../../components/vendor-folder-bar/vendor-folder-bar.component";
 import ChooseVendorsModal from "../UI/choose-vendors-modal/choose-vendors-modal.component";
+import CraeteNewTaskModal from "../UI/create-new-task-modal/create-new-task-modal.component";
 
 const ScrollReveal = ({ index, children }) => {
   return (
@@ -47,7 +48,8 @@ const VendorFoldersView = () => {
         ))}
       </Stack>
 
-      <ChooseVendorsModal open={isChooseVendorsOpen} onClose={handleChooseVendorsClose} data={vendorFolderBarData} />
+      <CraeteNewTaskModal open={isChooseVendorsOpen} onClose={handleChooseVendorsClose} />
+      {/* <ChooseVendorsModal open={isChooseVendorsOpen} onClose={handleChooseVendorsClose} data={vendorFolderBarData} /> */}
     </>
   );
 };

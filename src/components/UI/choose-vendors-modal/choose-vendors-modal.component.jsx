@@ -14,7 +14,6 @@ import {
   InfoTextNormal,
   StickDivider,
   StyledButton,
-  StyledMuiLink,
   Vendor,
   VendorFallback,
   VendorFallbackLogo,
