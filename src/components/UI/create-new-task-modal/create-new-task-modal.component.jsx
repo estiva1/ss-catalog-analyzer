@@ -29,14 +29,14 @@ import Dropdown from "../dropdown/dropdown.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../buttons/button/button.component";
 import Ripple from "../buttons/_ripple/ripple.component";
 
-const steps = [
-  "Select Vendor, add Assignee and upload File",
-  "Select parameters to finish uploading",
-  "Fill in the Task information",
-];
+const steps = ["", "", ""];
 
 const CraeteNewTaskModal = ({ open, onClose, data }) => {
   const [activeStep, setActiveStep] = useState(0);
+
+  const handleActiveStepIncrement = (newStep) => {
+    setActiveStep(newStep);
+  };
 
   return (
     <CustomModal open={open} onClose={onClose}>
@@ -44,8 +44,8 @@ const CraeteNewTaskModal = ({ open, onClose, data }) => {
         <Stack spacing="30px" alignItems="center" width="100%">
           <Box sx={{ width: "100%" }}>
             <Stepper activeStep={activeStep} alternativeLabel>
-              {steps.map((label) => (
-                <Step key={label}>
+              {steps.map((label, index) => (
+                <Step key={index}>
                   <StepLabel>{label}</StepLabel>
                 </Step>
               ))}
@@ -96,6 +96,7 @@ const CraeteNewTaskModal = ({ open, onClose, data }) => {
                       height="32px"
                       padding="8px 16px"
                       style={{ fontSize: "0.875rem" }}
+                      onClick={() => handleActiveStepIncrement(1)}
                     >
                       Upload File
                       <Ripple color="#1565D8" />
